@@ -7,10 +7,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
         
-        /* Configuración de página para impresora */
+        /* Configuración de impresora: A4 sin márgenes automáticos */
         @page {
             size: A4;
-            margin: 0; /* Controlamos los márgenes desde el body/page */
+            margin: 0; 
         }
 
         * {
@@ -20,21 +20,20 @@
         }
 
         body {
-            background-color: #fff; /* Fondo oscuro para ver mejor la hoja en pantalla */
+            background-color: #555; 
             font-family: 'Roboto', sans-serif;
             color: #1f2937;
-            font-size: 13px; /* Letra más grande y legible */
-            line-height: 1.2; /* Mayor interlineado */
+            font-size: 13px;
+            line-height: 1.3; /* Interlineado equilibrado */
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
 
-        /* Botón solo visible en pantalla */
         .no-print {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #ea580c; /* Un color fuego para la cabaña */
+            background-color: #ea580c;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -45,52 +44,57 @@
             z-index: 1000;
         }
 
-        /* Hoja A4 - Estructura Flex para forzar footer abajo */
+        /* CLAVE DEL DISEÑO:
+           Usamos Flexbox vertical.
+           El Header va arriba.
+           El Content-Wrapper ocupa todo el medio.
+           El Footer se pega al fondo.
+        */
         .page {
             width: 210mm;
-            height: 297mm; /* Altura exacta A4 */
+            height: 296mm; /* Fijamos altura A4 exacta (-1mm por seguridad) */
             background: white;
-            margin: 16px auto;
-            padding: 16mm; /* Márgenes generosos (2cm) */
+            margin: 20px auto;
+            /* Padding ajustado para dar aire pero no desbordar */
+            padding: 15mm 15mm 10mm 15mm; 
             display: flex;
             flex-direction: column;
-            /*justify-content: space-between; /* Clave: separa contenido de footer */
+            justify-content: space-between; /* Esto separa Header, Contenido y Footer */
         }
 
-        /* Encabezado */
         header {
             text-align: center;
-            border-bottom: 3px solid #ea580c; /* Detalle de color naranja quemado */
-            padding-bottom: 10px;
+            border-bottom: 3px solid #ea580c;
+            padding-bottom: 8px;
             margin-bottom: 15px;
+            flex-shrink: 0; /* Evita que el header se aplaste */
         }
 
         h1 {
-            font-size: 20px;
+            font-size: 22px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: #111;
         }
 
-        /* Contenedor principal del inventario (ocupa el espacio disponible) */
         .content-wrapper {
-            flex: 1; /* Esto empuja el footer hacia abajo */
+            flex-grow: 1; /* Ocupa el espacio disponible */
             column-count: 2;
-            column-gap: 30px; /* Más aire entre columnas */
+            column-gap: 35px;
+            overflow: hidden; /* Evita desbordes fantasmas */
         }
 
-        /* Secciones */
         .section {
-            break-inside: avoid;
-            margin-bottom: 14px; /* Más separación entre grupos */
+            break-inside: avoid; /* Evita que las listas se corten */
+            margin-bottom: 18px; /* Espacio limpio entre secciones */
         }
 
         h2 {
-            font-size: 14px;
+            font-size: 13px;
             background-color: #f3f4f6;
-            padding: 5px 10px;
-            margin-bottom: 6px;
-            border-left: 5px solid #ea580c; /* Borde naranja a la izquierda */
+            padding: 4px 8px;
+            margin-bottom: 5px;
+            border-left: 5px solid #ea580c;
             text-transform: uppercase;
             font-weight: 700;
         }
@@ -100,54 +104,55 @@
         }
 
         li {
-            padding-left: 15px;
+            padding-left: 12px;
             position: relative;
-            margin-bottom: 2px; /* Más aire entre items */
+            margin-bottom: 2px;
         }
 
         li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: #ea580c; /* Viñetas naranjas */
+            color: #ea580c;
             font-weight: bold;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 1.2;
         }
 
-        /* Footer (Servicios y Firmas) */
+        /* Footer anclado */
         .footer-section {
             margin-top: 10px;
             border-top: 2px solid #333;
-            padding-top: 10px;
+            padding-top: 15px;
             break-inside: avoid;
+            flex-shrink: 0; /* Evita que el footer se aplaste o desaparezca */
         }
 
         .services {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             text-align: center;
             letter-spacing: 1px;
-            background-color: #fff7ed; /* Fondo muy suave naranja */
-            padding: 10px;
+            background-color: #fff7ed;
+            padding: 8px;
             border: 1px dashed #ea580c;
-            margin-bottom: 30px; /* Espacio grande antes de firmar */
+            margin-bottom: 35px; /* Espacio para respirar antes de la firma */
             color: #ea580c;
         }
 
         .signatures {
             display: flex;
             justify-content: space-between;
-            padding: 0 50px;
+            padding: 0 40px;
         }
 
         .sign-box {
             width: 35%;
             border-top: 1px solid #000;
-            padding-top: 8px;
+            padding-top: 5px;
             text-align: center;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         /* Ajustes de impresión */
@@ -157,8 +162,9 @@
             .page {
                 margin: 0;
                 width: 100%;
-                height: 100vh; /* Ocupa toda la hoja al imprimir */
+                height: 100%; /* Usa la altura de la hoja física */
                 box-shadow: none;
+                padding: 10mm 15mm; /* Márgenes físicos de impresión */
             }
         }
     </style>
@@ -203,8 +209,7 @@
             <div class="section">
                 <h2>Baño</h2>
                 <ul>
-                    <li>1 Cortina de baño</li>
-                    <li>1 Alfombra</li>
+                    <li>1 Cortina de baño y 1 Alfombra</li>
                     <li>1 Papelera y 1 Escobilla</li>
                     <li>Accesorios de baño</li>
                     <li>2 Adornos de plantas</li>
@@ -215,10 +220,8 @@
                 <h2>Depósito (Bajo Escalera)</h2>
                 <ul>
                     <li>3 Sillas playeras</li>
-                    <li>1 Sombrilla</li>
-                    <li>1 Carro de playa</li>
-                    <li>Colchón 1 plaza</li>
-                    <li>Catre</li>
+                    <li>1 Sombrilla y 1 Carro de playa</li>
+                    <li>Colchón 1 plaza y Catre</li>
                     <li>Mesa plegable</li>
                 </ul>
             </div>
@@ -226,14 +229,11 @@
             <div class="section">
                 <h2>Planta Alta - Dormitorio</h2>
                 <ul>
-                    <li>Cama 2 plazas</li>
-                    <li>2 Mesas de luz</li>
+                    <li>Cama 2 plazas y 2 Mesas de luz</li>
                     <li>Ropero y Zapatero</li>
-                    <li>Sillón cama</li>
-                    <li>2 Mesas ratonas</li>
+                    <li>Sillón cama y 2 Mesas ratonas</li>
                     <li>Hamaca paraguaya</li>
-                    <li>1 Espejo</li>
-                    <li>1 Canasto de mimbre</li>
+                    <li>1 Espejo y 1 Canasto de mimbre</li>
                     <li>Cortinas</li>
                 </ul>
             </div>
@@ -241,11 +241,9 @@
             <div class="section">
                 <h2>Tecnología y Climatización</h2>
                 <ul>
-                    <li>TV 32"</li>
-                    <li>DVD y Antena</li>
+                    <li>TV 32", DVD y Antena</li>
                     <li>Chromecast</li>
-                    <li>Ventilador de techo</li>
-                    <li>Ventilador portátil</li>
+                    <li>Ventilador de techo y Portátil</li>
                     <li>Estufa eléctrica</li>
                     <li>1 Reloj de pared</li>
                     <li>Lámpara portátil</li>
@@ -256,12 +254,10 @@
                 <h2>Ropa de Cama y Decoración</h2>
                 <ul>
                     <li>1 Acolchado y 3 Colchas</li>
-                    <li>2 Juegos de sábanas</li>
-                    <li>2 Mantas</li>
+                    <li>2 Juegos de sábanas y 2 Mantas</li>
                     <li>4 Toallas</li>
                     <li>Almohadas y Almohadones</li>
-                    <li>3 Adornos artesanales colgantes</li>
-                    <li>Floreros decorativos</li>
+                    <li>3 Adornos colgantes y Floreros</li>
                 </ul>
             </div>
 
@@ -269,16 +265,16 @@
                 <h2>Exterior</h2>
                 <ul>
                     <li>Parrillero (con parrilla y quemador)</li>
-                    <li>2 Mesas de jardín</li>
-                    <li>12 Sillas</li>
+                    <li>2 Mesas de jardín y 12 Sillas</li>
                     <li>4 Faroles</li>
-                    <li>1 Manguera (20 metros)</li>
-                    <li>2 Regadores</li>
+                    <li>1 Manguera (20m) y 2 Regadores</li>
                     <li>2 Maceteros con plantas</li>
                 </ul>
             </div>
 
-        </div> <div class="footer-section">
+        </div> 
+
+        <div class="footer-section">
             <div class="services">
                 SERVICIOS INCLUIDOS: WIFI - AGUA - LUZ
             </div>
