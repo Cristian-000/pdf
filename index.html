@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario - Casa Amarilla</title>
+    <title>Inventario - Cabaña Broto de Fuego</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
         
-        /* --- REGLA MÁGICA PARA ELIMINAR FECHAS Y URLS --- */
+        /* ELIMINA MÁRGENES AUTOMÁTICOS DEL NAVEGADOR */
         @page {
             margin: 0;
-            size: auto;
+            size: A4;
         }
 
         * {
@@ -20,56 +20,52 @@
         }
 
         body {
-            background-color: #f3f4f6;
+            background-color: #fff;
             font-family: 'Roboto', sans-serif;
-            color: #1f2937;
-            font-size: 14px; /* Ajuste fino para asegurar que entre todo */
-            line-height: 1.2;
+            color: #000;
+            font-size: 11px; /* Letra compacta ideal para inventarios */
+            line-height: 1.3;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
 
-        /* Botón solo visible en pantalla */
+        /* Botón de descarga (Invisible al imprimir) */
         .no-print {
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #2563eb;
+            background-color: #222;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 8px 16px;
+            border-radius: 4px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             z-index: 999;
         }
-        .no-print:hover { background-color: #1d4ed8; }
 
-        /* Contenedor principal A4 */
+        /* Hoja A4 */
         .page {
             width: 210mm;
-            min-height: 297mm;
+            height: 296mm; 
             margin: 0 auto;
-            background: white;
-            /* Padding generoso porque eliminamos los márgenes del navegador */
-            padding: 5mm 15mm; 
+            padding: 12mm 15mm; /* Márgenes de seguridad */
             position: relative;
         }
 
         /* Encabezado */
         header {
             text-align: center;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #374151;
-            padding-bottom: 8px;
+            border-bottom: 2px solid #000;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
         }
 
         h1 {
             font-size: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #111;
+            margin: 0;
         }
 
         /* Columnas */
@@ -85,63 +81,58 @@
         }
 
         h2 {
-            font-size: 14px;
-            background-color: #e5e7eb;
-            padding: 3px 6px;
-            margin-bottom: 2px;
-            border-left: 4px solid #374151;
+            font-size: 12px;
+            background-color: #eee;
+            padding: 2px 5px;
+            margin-bottom: 4px;
+            border-left: 3px solid #000;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         ul {
             list-style: none;
-            margin-left: 2px;
         }
 
         li {
             padding-left: 10px;
             position: relative;
-            margin-bottom: 1px;
+            margin-bottom: 1px; 
         }
 
         li::before {
             content: "•";
             position: absolute;
             left: 0;
-            color: #6b7280;
             font-weight: bold;
+            font-size: 10px;
         }
 
-        /* Estilos agrupados */
-        .grouped-item {
+        /* Estilos de agrupación */
+        .inline-group {
             font-weight: 600;
-            color: #000;
-            margin-top: 2px;
+            display: inline;
         }
         .sub-text {
-            font-weight: 400;
-            color: #4b5563;
-            font-size: 11px;
-            line-height: 1.1;
-            margin-bottom: 2px;
+            color: #333;
         }
 
         /* Pie de página */
         .footer-section {
+            border-top: 2px solid #000;
+            padding-top: 10px;
+            margin-top: 10px;
             break-inside: avoid;
-            margin-top: 15px;
-         
         }
 
         .services {
-            font-size: 13px;
-            font-weight: bold;
+            font-size: 12px;
+            font-weight: 800;
             text-align: center;
-            background-color: #f3f4f6;
-            padding: 8px;
-            border: 1px dashed #d1d5db;
-            margin-bottom: 30px;
+            background-color: #f0f0f0;
+            padding: 5px;
+            margin-bottom: 35px;
+            text-transform: uppercase;
         }
 
         .signatures {
@@ -153,168 +144,93 @@
         .sign-box {
             width: 40%;
             border-top: 1px solid #000;
-            padding-top: 5px;
+            padding-top: 4px;
             text-align: center;
             font-weight: bold;
             font-size: 11px;
         }
 
-        /* Ajustes específicos de impresión */
+        /* Medias para impresión */
         @media print {
-            body { background-color: white; }
             .no-print { display: none; }
-            .page {
-                box-shadow: none;
-                margin: 0;
-                width: 100%;
-            }
+            .page { width: 100%; height: 100%; padding: 10mm 12mm; }
         }
     </style>
 </head>
 <body>
 
-    <button class="no-print" onclick="window.print()">🖨️ Descargar PDF (Limpio)</button>
+    <button class="no-print" onclick="window.print()">🖨️ Imprimir PDF</button>
 
     <div class="page">
         <header>
-            <h1>Inventario - Casa Amarilla</h1>
+            <h1>Inventario - Cabaña Broto de Fuego</h1>
         </header>
 
         <div class="columns-container">
+            
             <div class="section">
-                <h2>Cocina</h2>
+                <h2>Planta Baja - Cocina y Comedor</h2>
                 <ul>
-                    <li>Anafe</li>
-                    <li>Horno con campana</li>
-                    <li>Garrafa 13kg</li>
-                    <li>2 Asaderas</li>
+                    <li>Heladera, Cocina y Microondas</li>
+                    <li>Calefón, Extractor y Campana</li>
+                    <li>Dispensador de agua</li>
+                    <li>Juego de comedor, 1 Sillón y 1 Silla</li>
+                    <li><span class="inline-group">Vajilla Completa:</span> Platos, Vasos, Tazas.</li>
+                    <li><span class="inline-group">Cocina:</span> Cubiertos, Accesorios y Utensilios varios.</li>
+                    <li>2 Ollas</li>
+                    <li><span class="inline-group">Decoración:</span> 2 Plantas artificiales, 2 Girasoles.</li>
+                    <li>1 Cuadro, 2 Floreros, 1 Espejo artesanal.</li>
                 </ul>
             </div>
 
             <div class="section">
-                <h2>Electrodomésticos</h2>
+                <h2>Baño</h2>
                 <ul>
-                    <li>Heladera Consul</li>
-                    <li>Lavarropas y Secarropas</li>
-                    <li>Aire acondicionado</li>
-                    <li>Microondas</li>
-                    <li>Sandwichera, Tostadora y Licuadora</li>
-                    <li>Freidora sin aceite</li>
-                    <li>Mueble de cocina (23 puertas)</li>
+                    <li>1 Cortina de baño y 1 Alfombra</li>
+                    <li>1 Papelera y 1 Escobilla</li>
+                    <li>Accesorios varios</li>
+                    <li>2 Adornos de plantas</li>
                 </ul>
             </div>
 
             <div class="section">
-                <h2>Batería de Cocina</h2>
+                <h2>Depósito (Bajo Escalera)</h2>
                 <ul>
-                    <li>Set de ollas (6 piezas)</li>
-                    <li>Colador y rallador</li>
+                    <li>3 Sillas playeras y 1 Carro de playa</li>
+                    <li>1 Sombrilla</li>
+                    <li>Colchón 1 plaza y Catre</li>
+                    <li>Mesa plegable</li>
                 </ul>
             </div>
 
             <div class="section">
-                <h2>Vajilla y Utensilios</h2>
+                <h2>Planta Alta - Dormitorio</h2>
                 <ul>
-                    <li class="grouped-item">Juego Completo (6 unidades de c/u):</li>
-                    <li style="list-style: none; padding-left: 15px;" class="sub-text">
-                        Copas, Vasos vidrio, Platos llanos, Platos hondos, Platos postre, Compoteras.
-                    </li>
-                    
-                    <li class="grouped-item">Cubiertos (6 unidades de c/u):</li>
-                    <li style="list-style: none; padding-left: 15px;" class="sub-text">
-                        Cuchillos, Cucharas, Tenedores, Cucharitas.
-                    </li>
-
-                    <li style="margin-top:6px;">2 Fuentes de vidrio redondas</li>
-                    <li>7 Tuppers de plástico</li>
-                    <li>1 Palo de amasar</li>
-                    <li>1 Destapador, 1 Pisapapas, 3 Pinzas</li>
-                    <li>Set de 5 cucharones</li>
-                    <li>Set de 6 individuales</li>
-                    <li>3 Repasadores y 1 Mantel</li>
-                    <li>Set picada porcelana blanca (4 piezas)</li>
-                    <li>Set de aceitero y vinagrero</li>
-                    <li>Set de condimenteros</li>
-                    <li>3 Recipientes de vidrio</li>
-                    <li>Papelera cocina, Jabonero, Escurridor</li>
-                    <li>2 Tablas de picar</li>
-                    <li>Tenedor y cuchillo de parrilla</li>
-                    <li>Limpieza: Balde, mopa, pala y escoba</li>
+                    <li><span class="inline-group">Mobiliario:</span> Cama 2 plazas, 2 Mesas de luz.</li>
+                    <li>Ropero y Zapatero.</li>
+                    <li>Sillón cama, Hamaca paraguaya, 2 Mesas ratonas.</li>
+                    <li><span class="inline-group">Tecnología:</span> TV 32", DVD, Antena, Chromecast.</li>
+                    <li><span class="inline-group">Clima:</span> Ventilador portátil, Ventilador techo, Estufa eléctrica.</li>
+                    <li><span class="inline-group">Ropa de Cama:</span> 1 Acolchado, 3 Colchas.</li>
+                    <li>2 Juegos de sábanas, 2 Mantas.</li>
+                    <li>4 Toallas, Almohadas y Almohadones.</li>
+                    <li><span class="inline-group">Decoración:</span> 3 Adornos colgantes, Floreros.</li>
+                    <li>1 Reloj de pared, 1 Espejo, 1 Canasto mimbre.</li>
+                    <li>Cortinas y Lámpara portátil.</li>
                 </ul>
             </div>
 
             <div class="section">
-                <h2>Cocina, Comedor y Living</h2>
+                <h2>Exterior</h2>
                 <ul>
-                    <li>Barra con 3 taburetes</li>
-                    <li>Mesa madera (6 sillas) y Mesa ratonera</li>
-                    <li>Juego de sillones (3 piezas)</li>
-                    <li>TV Aiwa 65” y Equipo de música Aiwa</li>
-                    <li>Repisa de madera</li>
-                    <li>1 Lámpara portátil de pie</li>
-                    <li>1 Reloj de pared</li>
-                    <li>3 Cuadros decorativos</li>
-                    <li>2 Lámparas LED</li>
-                    <li>4 Centros de mesa decorativos</li>
-                    <li>1 Juego de cortinas Mambu</li>
-                    <li>8 Artefactos de luz</li>
+                    <li>Parrillero completo (con parrilla y quemador)</li>
+                    <li>2 Mesas y 12 Sillas de jardín</li>
+                    <li>4 Faroles</li>
+                    <li>1 Manguera (20m) y 2 Regadores</li>
+                    <li>2 Maceteros con plantas</li>
                 </ul>
             </div>
 
-            <div class="section">
-                <h2>Dormitorio Principal</h2>
-                <ul>
-                    <li>Somier 2 plazas</li>
-                    <li>Respaldo con 2 mesas de luz</li>
-                    <li>Ropero 6 puertas</li>
-                    <li>TV 43”</li>
-                    <li>2 Lámparas portátiles</li>
-                    <li>2 Almohadas y 1 Almohadón</li>
-                    <li>1 Juego de sábanas</li>
-                    <li>1 Cubrecama y 1 Manta polar</li>
-                    <li>4 Enchufes</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>Dormitorio Secundario</h2>
-                <ul>
-                    <li>Somier 1 plaza</li>
-                    <li>Ropero 3 puertas</li>
-                    <li>Cucheta marinera madera (3 camas)</li>
-                    <li>4 Colchones</li>
-                    <li>4 Juegos de sábanas</li>
-                    <li>4 Mantas polares</li>
-                    <li>4 Almohadas</li>
-                    <li>4 Enchufes</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>Baño Completo</h2>
-                <ul>
-                    <li>Calefón 30L</li>
-                    <li>1 Lluvero</li>
-                    <li>Espejo y Mampara vidrio templado</li>
-                    <li>Toallero</li>
-                    <li>6 Toallas grandes y 6 chicas</li>
-                    <li>1 Enchufe</li>
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>Exteriores - Patio</h2>
-                <ul>
-                    <li>2 Cámaras de seguridad</li>
-                    <li>14 Artefactos de luz casa</li>
-                    <li>Parrillero, quemador y parrilla</li>
-                    <li>1 Accesorio de parrilla</li>
-                    <li>Mesa exterior, 6 sillas y sombrilla</li>
-                    <li>Pérgola y 1 Tejo</li>
-                    <li>2 Set de luces decorativos</li>
-                    <li>1 Cenicero</li>
-                </ul>
-            </div>
         </div>
 
         <div class="footer-section">
