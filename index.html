@@ -7,10 +7,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
         
-        /* ELIMINA MÁRGENES AUTOMÁTICOS DEL NAVEGADOR */
+        /* Configuración de página para impresora */
         @page {
-            margin: 0;
             size: A4;
+            margin: 0; /* Controlamos los márgenes desde el body/page */
         }
 
         * {
@@ -20,20 +20,282 @@
         }
 
         body {
-            background-color: #fff;
+            background-color: #555; /* Fondo oscuro para ver mejor la hoja en pantalla */
             font-family: 'Roboto', sans-serif;
-            color: #000;
-            font-size: 11px; /* Letra compacta ideal para inventarios */
-            line-height: 1.3;
+            color: #1f2937;
+            font-size: 13px; /* Letra más grande y legible */
+            line-height: 1.5; /* Mayor interlineado */
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
 
-        /* Botón de descarga (Invisible al imprimir) */
+        /* Botón solo visible en pantalla */
         .no-print {
             position: fixed;
             top: 20px;
             right: 20px;
+            background-color: #ea580c; /* Un color fuego para la cabaña */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        /* Hoja A4 - Estructura Flex para forzar footer abajo */
+        .page {
+            width: 210mm;
+            height: 297mm; /* Altura exacta A4 */
+            background: white;
+            margin: 20px auto;
+            padding: 20mm; /* Márgenes generosos (2cm) */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Clave: separa contenido de footer */
+        }
+
+        /* Encabezado */
+        header {
+            text-align: center;
+            border-bottom: 3px solid #ea580c; /* Detalle de color naranja quemado */
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #111;
+        }
+
+        /* Contenedor principal del inventario (ocupa el espacio disponible) */
+        .content-wrapper {
+            flex: 1; /* Esto empuja el footer hacia abajo */
+            column-count: 2;
+            column-gap: 40px; /* Más aire entre columnas */
+        }
+
+        /* Secciones */
+        .section {
+            break-inside: avoid;
+            margin-bottom: 25px; /* Más separación entre grupos */
+        }
+
+        h2 {
+            font-size: 14px;
+            background-color: #f3f4f6;
+            padding: 5px 10px;
+            margin-bottom: 8px;
+            border-left: 5px solid #ea580c; /* Borde naranja a la izquierda */
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            padding-left: 15px;
+            position: relative;
+            margin-bottom: 3px; /* Más aire entre items */
+        }
+
+        li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ea580c; /* Viñetas naranjas */
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* Footer (Servicios y Firmas) */
+        .footer-section {
+            margin-top: 20px;
+            border-top: 2px solid #333;
+            padding-top: 20px;
+            break-inside: avoid;
+        }
+
+        .services {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            background-color: #fff7ed; /* Fondo muy suave naranja */
+            padding: 10px;
+            border: 1px dashed #ea580c;
+            margin-bottom: 50px; /* Espacio grande antes de firmar */
+            color: #ea580c;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+
+        .sign-box {
+            width: 35%;
+            border-top: 1px solid #000;
+            padding-top: 8px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        /* Ajustes de impresión */
+        @media print {
+            body { background: none; }
+            .no-print { display: none; }
+            .page {
+                margin: 0;
+                width: 100%;
+                height: 100vh; /* Ocupa toda la hoja al imprimir */
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="no-print" onclick="window.print()">🖨️ Imprimir PDF</button>
+
+    <div class="page">
+        
+        <header>
+            <h1>Inventario - Cabaña Broto de Fuego</h1>
+        </header>
+
+        <div class="content-wrapper">
+            
+            <div class="section">
+                <h2>Planta Baja - Cocina</h2>
+                <ul>
+                    <li>Heladera, Cocina y Microondas</li>
+                    <li>Calefón, Extractor y Campana</li>
+                    <li>Dispensador de agua</li>
+                    <li>Juegos de vajilla completos</li>
+                    <li>2 Ollas y Utensilios de cocina</li>
+                    <li>Vasos, Tazas y Platos</li>
+                    <li>Cubiertos y Accesorios varios</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Planta Baja - Comedor y Living</h2>
+                <ul>
+                    <li>Juegos de comedor</li>
+                    <li>1 Sillón y 1 Silla</li>
+                    <li>1 Espejo artesanal</li>
+                    <li>1 Cuadro decorativo</li>
+                    <li>2 Plantas artificiales y 2 Girasoles</li>
+                    <li>2 Floreros</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Baño</h2>
+                <ul>
+                    <li>1 Cortina de baño</li>
+                    <li>1 Alfombra</li>
+                    <li>1 Papelera y 1 Escobilla</li>
+                    <li>Accesorios de baño</li>
+                    <li>2 Adornos de plantas</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Depósito (Bajo Escalera)</h2>
+                <ul>
+                    <li>3 Sillas playeras</li>
+                    <li>1 Sombrilla</li>
+                    <li>1 Carro de playa</li>
+                    <li>Colchón 1 plaza</li>
+                    <li>Catre</li>
+                    <li>Mesa plegable</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Planta Alta - Dormitorio</h2>
+                <ul>
+                    <li>Cama 2 plazas</li>
+                    <li>2 Mesas de luz</li>
+                    <li>Ropero y Zapatero</li>
+                    <li>Sillón cama</li>
+                    <li>2 Mesas ratonas</li>
+                    <li>Hamaca paraguaya</li>
+                    <li>1 Espejo</li>
+                    <li>1 Canasto de mimbre</li>
+                    <li>Cortinas</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Tecnología y Climatización</h2>
+                <ul>
+                    <li>TV 32"</li>
+                    <li>DVD y Antena</li>
+                    <li>Chromecast</li>
+                    <li>Ventilador de techo</li>
+                    <li>Ventilador portátil</li>
+                    <li>Estufa eléctrica</li>
+                    <li>1 Reloj de pared</li>
+                    <li>Lámpara portátil</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Ropa de Cama y Decoración</h2>
+                <ul>
+                    <li>1 Acolchado y 3 Colchas</li>
+                    <li>2 Juegos de sábanas</li>
+                    <li>2 Mantas</li>
+                    <li>4 Toallas</li>
+                    <li>Almohadas y Almohadones</li>
+                    <li>3 Adornos artesanales colgantes</li>
+                    <li>Floreros decorativos</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Exterior</h2>
+                <ul>
+                    <li>Parrillero (con parrilla y quemador)</li>
+                    <li>2 Mesas de jardín</li>
+                    <li>12 Sillas</li>
+                    <li>4 Faroles</li>
+                    <li>1 Manguera (20 metros)</li>
+                    <li>2 Regadores</li>
+                    <li>2 Maceteros con plantas</li>
+                </ul>
+            </div>
+
+        </div> <div class="footer-section">
+            <div class="services">
+                SERVICIOS INCLUIDOS: WIFI - AGUA - LUZ
+            </div>
+            
+            <div class="signatures">
+                <div class="sign-box">
+                    Firma
+                </div>
+                <div class="sign-box">
+                    Fecha
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
             background-color: #222;
             color: white;
             border: none;
