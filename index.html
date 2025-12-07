@@ -23,8 +23,9 @@
             background-color: #555; 
             font-family: 'Roboto', sans-serif;
             color: #1f2937;
-            font-size: 14px;
-            line-height: 1.4; /* Interlineado equilibrado */
+            /* Ajuste leve para acomodar los nuevos items */
+            font-size: 12.5px; 
+            line-height: 1.35; 
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
@@ -44,56 +45,50 @@
             z-index: 1000;
         }
 
-        /* CLAVE DEL DISEÑO:
-           Usamos Flexbox vertical.
-           El Header va arriba.
-           El Content-Wrapper ocupa todo el medio.
-           El Footer se pega al fondo.
-        */
         .page {
             width: 210mm;
-            height: 296mm; /* Fijamos altura A4 exacta (-1mm por seguridad) */
+            height: 296mm; 
             background: white;
             margin: 20px auto;
-            /* Padding ajustado para dar aire pero no desbordar */
-            padding: 15mm 15mm 10mm 15mm; 
+            /* Padding optimizado */
+            padding: 12mm 15mm 10mm 15mm; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Esto separa Header, Contenido y Footer */
+            justify-content: space-between; 
         }
 
         header {
             text-align: center;
             border-bottom: 2px solid #ea580c;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            flex-shrink: 0; /* Evita que el header se aplaste */
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+            flex-shrink: 0; 
         }
 
         h1 {
-            font-size: 22px;
+            font-size: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #111;
         }
 
         .content-wrapper {
-            flex-grow: 1; /* Ocupa el espacio disponible */
+            flex-grow: 1; 
             column-count: 2;
-            column-gap: 35px;
-            overflow: hidden; /* Evita desbordes fantasmas */
+            column-gap: 30px;
+            overflow: hidden; 
         }
 
         .section {
-            break-inside: avoid; /* Evita que las listas se corten */
-            margin-bottom: 18px; /* Espacio limpio entre secciones */
+            break-inside: avoid; 
+            margin-bottom: 14px; 
         }
 
         h2 {
-            font-size: 13px;
+            font-size: 12px;
             background-color: #f3f4f6;
-            padding: 4px 8px;
-            margin-bottom: 5px;
+            padding: 3px 8px;
+            margin-bottom: 4px;
             border-left: 5px solid #ea580c;
             text-transform: uppercase;
             font-weight: 700;
@@ -106,7 +101,7 @@
         li {
             padding-left: 12px;
             position: relative;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         li::before {
@@ -116,27 +111,31 @@
             color: #ea580c;
             font-weight: bold;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
-        /* Footer anclado */
+        /* Estilo para agrupar items en una linea */
+        .grouped {
+            font-weight: 500;
+        }
+
         .footer-section {
-            margin-top: 20px;
+            margin-top: 10px;
             border-top: 2px solid #ea580c;
-            padding-top: 15px;
+            padding-top: 10px;
             break-inside: avoid;
-            flex-shrink: 0; /* Evita que el footer se aplaste o desaparezca */
+            flex-shrink: 0; 
         }
 
         .services {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             text-align: center;
             letter-spacing: 1px;
             background-color: #fff7ed;
-            padding: 8px;
+            padding: 6px;
             border: 1px dashed #ea580c;
-            margin-bottom: 35px; /* Espacio para respirar antes de la firma */
+            margin-bottom: 30px; 
             color: #ea580c;
         }
 
@@ -155,16 +154,15 @@
             font-size: 12px;
         }
 
-        /* Ajustes de impresión */
         @media print {
             body { background: none; }
             .no-print { display: none; }
             .page {
                 margin: 0;
                 width: 100%;
-                height: 100%; /* Usa la altura de la hoja física */
+                height: 100%; 
                 box-shadow: none;
-                padding: 10mm 15mm; /* Márgenes físicos de impresión */
+                padding: 10mm 15mm; 
             }
         }
     </style>
@@ -185,12 +183,14 @@
                 <h2>Planta Baja - Cocina</h2>
                 <ul>
                     <li>Heladera, Cocina y Microondas</li>
+                    <li>Licuadora y Sandwichera</li>
                     <li>Calefón, Extractor y Campana</li>
                     <li>Dispensador de agua</li>
-                    <li>Juegos de vajilla completos</li>
-                    <li>2 Ollas y Utensilios de cocina</li>
-                    <li>Vasos, Tazas y Platos</li>
-                    <li>Cubiertos y Accesorios varios</li>
+                    <li><span class="grouped">Batería:</span> 2 Ollas, 2 Asaderas, 2 Sartenes.</li>
+                    <li><span class="grouped">Utensilios:</span> Rallador, Colador, Escurridor.</li>
+                    <li>2 Ensaladeras, 2 Tablas de picar, Papelera.</li>
+                    <li>Vajilla completa, Cubiertos y Accesorios.</li>
+                    <li>Vasos, Tazas y Platos.</li>
                 </ul>
             </div>
 
@@ -198,31 +198,31 @@
                 <h2>Planta Baja - Comedor y Living</h2>
                 <ul>
                     <li>Juegos de comedor</li>
-                    <li>1 Sillón y 1 Silla</li>
-                    <li>1 Espejo artesanal</li>
-                    <li>1 Cuadro decorativo</li>
-                    <li>2 Plantas artificiales y 2 Girasoles</li>
-                    <li>2 Floreros</li>
+                    <li>Sillón esquinero y 1 Silla</li>
+                    <li>1 Espejo artesanal y 1 Cuadro</li>
+                    <li>Libros varios</li>
+                    <li><span class="grouped">Deco:</span> 2 Plantas artif., 2 Girasoles, 2 Floreros.</li>
                 </ul>
             </div>
 
             <div class="section">
                 <h2>Baño</h2>
                 <ul>
+                    <li>Grifería monocomando, Espejo y Luces</li>
                     <li>1 Cortina de baño y 1 Alfombra</li>
                     <li>1 Papelera y 1 Escobilla</li>
-                    <li>Accesorios de baño</li>
-                    <li>2 Adornos de plantas</li>
+                    <li>2 Toallas grandes y 2 Toallas chicas</li>
+                    <li>Accesorios y 2 Adornos de plantas</li>
                 </ul>
             </div>
 
             <div class="section">
                 <h2>Depósito (Bajo Escalera)</h2>
                 <ul>
-                    <li>3 Sillas playeras</li>
-                    <li>1 Sombrilla y 1 Carro de playa</li>
-                    <li>Colchón 1 plaza y Catre</li>
-                    <li>Mesa plegable</li>
+                    <li><span class="grouped">Set limpieza:</span> Balde, pala y escoba.</li>
+                    <li>3 Sillas playeras, Sombrilla y Carro.</li>
+                    <li>Colchón 1 plaza, Catre y Mesa plegable.</li>
+                    <li>1 Almohada y 1 Manta.</li>
                 </ul>
             </div>
 
@@ -230,45 +230,53 @@
                 <h2>Planta Alta - Dormitorio</h2>
                 <ul>
                     <li>Cama 2 plazas y 2 Mesas de luz</li>
-                    <li>Ropero y Zapatero</li>
-                    <li>Sillón cama y 2 Mesas ratonas</li>
-                    <li>Hamaca paraguaya</li>
+                    <li>Ropero 3 puertas y Zapatero</li>
+                    <li>2 Mesas ratonas y Hamaca paraguaya</li>
                     <li>1 Espejo y 1 Canasto de mimbre</li>
                     <li>Cortinas</li>
                 </ul>
             </div>
 
             <div class="section">
+                <h2>Terraza</h2>
+                <ul>
+                    <li>1 Sillón</li>
+                    <li>1 Mesa ratona (vidrio y mimbre)</li>
+                    <li>1 Florero y 1 Centro de mesa</li>
+                </ul>
+            </div>
+
+            <div class="section">
                 <h2>Tecnología y Climatización</h2>
                 <ul>
-                    <li>TV 32", DVD y Antena</li>
-                    <li>Chromecast</li>
+                    <li>TV 32", DVD, Antena y <strong>TV Box</strong></li>
                     <li>Ventilador de techo y Portátil</li>
                     <li>Estufa eléctrica</li>
-                    <li>1 Reloj de pared</li>
-                    <li>Lámpara portátil</li>
+                    <li>1 Reloj de pared y Lámpara portátil</li>
+                    <li>Plantas artificiales</li>
                 </ul>
             </div>
 
             <div class="section">
                 <h2>Ropa de Cama y Decoración</h2>
                 <ul>
+                    <li>2 Juegos de sábanas (2 plazas)</li>
+                    <li>2 Mantas (1 plaza)</li>
                     <li>1 Acolchado y 3 Colchas</li>
-                    <li>2 Juegos de sábanas y 2 Mantas</li>
-                    <li>4 Toallas</li>
-                    <li>Almohadas y Almohadones</li>
-                    <li>3 Adornos colgantes y Floreros</li>
+                    <li>4 Almohadas y 4 Almohadones</li>
+                    <li>1 Centro de mesa y 1 Florero de vidrio</li>
+                    <li>3 Adornos colgantes</li>
                 </ul>
             </div>
 
             <div class="section">
                 <h2>Exterior</h2>
                 <ul>
-                    <li>Parrillero (con parrilla y quemador)</li>
+                    <li>Parrillero (con quemador)</li>
+                    <li><span class="grouped">Set Parrilla:</span> Pincho, tenedor y cuchillo.</li>
                     <li>2 Mesas de jardín y 12 Sillas</li>
-                    <li>4 Faroles</li>
+                    <li>4 Faroles y 2 Maceteros con plantas</li>
                     <li>1 Manguera (20m) y 2 Regadores</li>
-                    <li>2 Maceteros con plantas</li>
                 </ul>
             </div>
 
