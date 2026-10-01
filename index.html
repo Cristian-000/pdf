@@ -136,39 +136,43 @@
             color: #ea580c;
         }
 
-        /* Estilos mejorados para la marca de Airbnb */
+        /* Estilos alineados y corregidos para Airbnb */
         .airbnb-copy {
             display: flex;
-            align-items: center;
+            align-items: center; /* Centrado vertical estricto */
             justify-content: center;
-            gap: 6px;
             font-size: 11px;
             color: #888;
             font-weight: 500;
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Más margen abajo */
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            line-height: 1; /* Remueve el alto invisible de la fuente */
         }
 
         .airbnb-brand {
             display: flex;
             align-items: center;
-            gap: 4px;
+            margin-left: 6px;
         }
 
         .airbnb-logo {
-            width: 17px;
-            height: 17px;
-            fill: #FF385C; /* Rojo oficial actual */
+            width: 19px;
+            height: 19px;
+            fill: #FF385C; 
+            overflow: visible; /* FUNDAMENTAL: Evita que se corten las curvas de abajo */
+            margin-right: 4px;
+            margin-bottom: 1px; /* Ajuste óptico fino */
         }
 
         .airbnb-text {
             text-transform: lowercase;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
             color: #FF385C;
             letter-spacing: -0.5px;
-            margin-top: 1px;
+            line-height: 1;
+            transform: translateY(-1px); /* Sube apenas el texto para que la base armonice con el logo y el gris */
         }
 
         @media print {
